@@ -3,6 +3,7 @@
       function get(id){
              return  document.getElementById(id);
       }
+	  
       function loadDoc()
 	  {
              var xhr = new XMLHttpRequest();
@@ -11,12 +12,9 @@
 
        if(this.readyState== 4 && this.status == 200){
           get("demo").innerHTML = this.responseText;
-              }
-		
+              }		
 		};
 		
-       xhr.send();
-   }			 
          xhr.send();
 		}
 	</script>
