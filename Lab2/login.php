@@ -1,36 +1,38 @@
-<?php include 'main_header.php';
-      include 'controllers/UserController.php';
+<?php  
+     include 'Controller/StudentController.php';
 ?>
 
- 
+<html>
+<head>
+     <meta charset="utf-8">
+     <title>Login</title>
+</head>
+<body>
+      <h3>Login</h3>
 
-<!--login starts -->
-<div class="center-login">
-    <h1 class="text text-center">Login</h1>
-    <h5 class="text-danger"><?php echo $err_db;?></h5>
-    <form action="" method="post" class="form-horizontal form-material">
-        <div class="form-group">
-            <h4 class="text">Username</h4> 
-            <input type="text" name="uname" value="<?php echo $uname;?>" class="form-control">
-            <span class="text-danger"><?php echo $err_uname;?></span>
-        </div>
-        <div class="form-group">
-            <h4 class="text">Password</h4> 
-            <input type="password" name="pass"  class="form-control">
-            <span class="text-danger"><?php echo $err_pass;?></span>
-        </div>
-        <div class="form-group text-center">
-            
-            <input type="submit" name="btn_login" class="btn btn-danger" value="Login" class="form-control">
-        </div>
-        <div class="form-group text-center">
-            
-            <a href="signup.php" >Not registered yet? Sign Up</a>
-        </div>
-    </form>
-</div>
+      <form method="Post" action="">
+              <table>
+                  <tr>
+                       <td>UserName: </td>
+                       <td><input type="text" name="uname" value="<?php echo $uname;?>"></td>
+                       <td><?php echo $err_uname;?></td>
+                  </tr>
+                       
+                  <tr>
+                       <td>Password:</td>
 
- 
+                       <td><input type="Password" name="password" value="<?php echo $pass;?>"></td>
 
-<!--login ends -->
-<?php include 'main_footer.php';?>
+                       <td><?php echo $err_pass;?></td>
+                  </tr>
+                  <tr>
+                       <td align="center" colspan="2"><input type="submit" value="Login" name="login"></td>
+                  </tr>
+                  
+
+                  <?php echo $err_db; ?>
+                
+              </table>
+      </form>
+</body>
+</html>

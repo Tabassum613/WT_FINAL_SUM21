@@ -1,41 +1,70 @@
-<?php include 'admin_header.php';
-	require_once 'controllers/ProductController.php';
-	$products = getProducts();
+<?php  
+     include 'Controller/StudentController.php';
+     $department = getAllDepartment();
 ?>
-<!--All student starts -->
+<html>
+<head>
+     <title>Add Student</title>
+</head>
+<body>
+      <h1 align="center">Add Student</h1><br>
+      <?php  
+           echo $err_db;
+      ?>
+      <form action="" method="POST">
+             <div align="center">
+                        <tr>
+                        <td>
+                            Student Name:
+                            <input type="text" name="name" size="30"value="<?php echo $name; ?>">
+                            <span>
+                                  <?php echo $err_name; ?>
+                            </span>
+                        </td>
+                        </tr>
 
-<div class="center">
-	<h3 class="text">All Student</h3>
-	<table class="table table-striped">
-		<thead>
-			<th>Sl#</th>
-			<th> Name</th>
-			<th>DOB </th>
-			<th> Credit</th>
-			<th> CGPA</th>
-			<th></th>
-			<th></th>
-			
-		</thead>
-		<tbody>
-			<?php
-				$i=1;
-				foreach($student as $p){
-					echo "<tr>";
-						
-						
-						echo "<td>".$p["name"]."</td>";
-						echo "<td>".$p["cgpa"]."</td>";
-						echo "<td>".$p["credit"]."</td>";
-						echo "<td>".$p["dob"]."</td>";
-						echo '<td><a href="edit_student.php?id='.$p["id"].'" class="btn btn-success">Edit</a></td>';
-						echo '<td><a class="btn btn-danger">Delete</td>';
-					echo "</tr>";
-					$i++;
-				}
-			?>
-		</tbody>
-	</table>
-</div>
-<!--Student ends -->
-<?php include 'main_footer.php';?>
+                        <tr>
+                        <td>
+                           Date of Birth:
+                           <input type="text" name="birth" size="30" value="<?php echo $birth; ?>">
+                        </td>
+                        <span>  <?php echo $err_birth; ?> </span>
+                        </tr><br>
+
+                        <tr>
+                        <td>
+                           Credit:
+                           <input type="text" name="credit" size="30" value="<?php echo $credit; ?>">
+                        </td>
+                       <span><?php echo $err_credit; ?> </span>
+                       </tr><br>
+
+                        <tr>
+                        <td>
+                           CGPA:
+                           <input type="text" name="cgpa" size="30" value="<?php echo $cgpa; ?>">
+                        </td>
+
+                        <span><?php echo $err_cgpa; ?></span>
+                       </tr><br>
+
+                        <tr>
+                        <td>
+                           Department:
+                           <select name="Dept_id">
+                                <option disabled selected>Choose</option>
+                           <?php
+                                foreach ($department as $d) 
+                                {
+                                   echo '<option value="'.$d["id"].'">'.$d["Name"].'</option>';
+                                }  
+                           ?>
+                           </select>
+                       </td>
+                   </tr>  
+             </div><br>
+
+             <div align="center"><input type="submit" name="Submit" value="Submit"></div>
+      </form>
+</body>
+</html>
