@@ -47,8 +47,27 @@
 	 $balance="";
 	 $err_balance="";
 	 
+	 //Rating
 	 
-	  $err_db="";
+	 $budget="";
+     $err_budget="";
+
+     $behavior="";
+     $err_behavior="";
+	 
+	 $Satisfied="";
+     $err_Satisfied="";
+
+     $Star="";
+     $err_Star="";
+	 
+	 $purpose="";
+     $err_purpose="";
+
+     $feedback="";
+     $err_feedback="";
+	 
+	 $err_db="";
      $hasError = false;
 	 
 	 
@@ -831,7 +850,7 @@ if(isset($_POST["sign_up"]))
 				header("Location: All_Learners.php");
 				
 			}
-			$err_db = "abcd";
+			$err_db = "Database Error";
 			}
           
 					 
@@ -1017,12 +1036,13 @@ if(isset($_POST["sign_up"]))
 			$cpass=$_POST["password"];
 		}
 
-		
-        $fileType = strtolower(pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION));
+		$fileType = strtolower(pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION));
 		$file = "storage/product_images/".uniqid().".$fileType";
 		move_uploaded_file($_FILES["image"]["tmp_name"],$file);
+        
 
 			if(!$hasError){
+		
 			$rs = deleteLearner($_POST["id"]);
 			if($rs === true){
 				header("Location: All_Learners.php");
@@ -1032,6 +1052,154 @@ if(isset($_POST["sign_up"]))
 			}
 
      }
+	 
+	 
+	 
+	 
+	 //************************************RATING****************************************
+	 //**********************************************************************************
+	 //**********************************************************************************
+	 
+	 
+	 elseif(isset($_POST["r_submit"]))
+	  {
+		  
+		   //Name  Validation
+				
+                 if(empty($_POST["name"])){
+               $err_name="Name required";
+               $hasError = true;
+               }
+               elseif(!is_numeric($_POST["name"]) && !empty($_POST["name"]))
+               {
+               	if(strpos($_POST["name"]," ") && strlen($_POST["name"]) >= 6)
+               	{
+                $name=$_POST["name"];
+                }
+
+                elseif(!strpos($_POST["name"]," ") && strlen($_POST["name"]) >= 6)
+               	{
+                $err_name="Space required";
+			        $hasError = true;
+                }
+
+                elseif(strpos($_POST["name"]," ") && strlen($_POST["name"]) < 6)
+               	{
+                $err_name="Name must contain at least 6 characters";
+			        $hasError = true;
+                }
+                
+                elseif(!strpos($_POST["name"]," ") && strlen($_POST["name"]) < 6)
+                {
+                	$err_name="Name must contain at least 6 characters with space";
+			        $hasError = true;
+                }
+               
+			   }
+			   
+				elseif(is_numeric($_POST["name"]))
+				{
+                    $err_name="Number is not allowed";
+			        $hasError = true; 
+				}
+				
+				//**************************************************
+			
+			if(!isset($_POST["budget"])){
+				$err_budget="Answer required";
+				$hasError = true;
+			}
+				else{
+				$budget=$_POST["budget"]; 
+				
+            }    
+
+
+
+		//**************************************************
+			
+			if(!isset($_POST["behavior"])){
+				$err_behavior="Answer required";
+				$hasError = true;
+			}
+				else{
+				$behavior=$_POST["behavior"]; 
+				
+            } 
+
+
+
+            //**************************************************
+			
+			if(!isset($_POST["Satisfied"])){
+				$err_Satisfied="Answer required";
+				$hasError = true;
+			}
+				else{
+				$Satisfied=$_POST["Satisfied"]; 
+				
+            }    
+
+
+
+		//**************************************************
+			
+			if(!isset($_POST["Star"])){
+				$err_Star="Answer required";
+				$hasError = true;
+			}
+				else{
+				$Star=$_POST["Star"]; 
+				
+            } 
+
+
+
+         //***************************************************
+
+          if(empty($_POST["purpose"]))
+            {
+				$err_purpose ="Message Required";
+				$hasError = true;
+            }
+            else
+            {
+				$purpose = $_POST["purpose"];
+            }
+
+
+			
+		
+
+         //***************************************************
+
+          if(empty($_POST["feedback"]))
+            {
+				$err_feedback ="Feedback Required";
+				$hasError = true;
+            }
+            else
+            {
+				$feedback = $_POST["feedback"];
+            }
+			
+			
+			 if(!$hasError){
+			$rs = insertTrating($name,$budget,$behavior,$Satisfied,$Star,$purpose,$feedback);
+			if($rs === true){
+				header("Location: L_Dashboard.php");
+				
+			}
+			$err_db = "Database error";
+			}
+		  
+		  
+	  }
+				
+				
+		  
+		  
+	  
 	 
 elseif(isset($_POST["transfer"]))
 	  {
@@ -1266,21 +1434,21 @@ elseif(isset($_POST["transfer"]))
 		return $rs[0];                   //To pass only one instance
 	    }
 		
-		function updateLearners($name,$email,$add,$pcode,$file,$id){
+		function updateLearners($name,$email,$add,$pcode,$file,$id){       //edit learner
 		$query = "update learner_registration set name= '$name',email='$email',address='$add',postal_code='$pcode',img='$file' where id = $id";
 	    return execute($query);
 	    }	
 	 
 		
 		
-		 function deleteLearner($id)         //learner
+		 function deleteLearner($id)         //learner    delete
         {
           $query= "delete from learner_registration where id= $id";
           return execute($query);
         }
 		
 		
-		function transferamount($Ttype,$tn,$date,$Pby,$Rby,$balance)
+		function transferamount($Ttype,$tn,$date,$Pby,$Rby,$balance)    //transaction
 		{
 		$query = "insert into payment values (NULL,'$Ttype',$tn,'$date','$Pby','$Rby',$balance)";
 		return execute($query);
@@ -1292,6 +1460,13 @@ elseif(isset($_POST["transfer"]))
 		$rs = get($query);
 		return $rs;
 	    }
+		
+		
+		function insertTrating($name,$budget,$behavior,$Satisfied,$Star,$purpose,$feedback){
+		$query  = "insert into tutor_rating values (NULL,'$name','$budget','$behavior','$Satisfied','$Star','$purpose','$feedback')";
+		//echo $query;
+		return execute($query);	
+		}
 		
 		
 ?>

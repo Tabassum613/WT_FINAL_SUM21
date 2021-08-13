@@ -1,4 +1,4 @@
-        <?php  
+       <?php  
 		  include 'Tutor_header.php'; 
           include 'controllers/LearnerController.php';
 		  $learner = getAllLearner();
@@ -33,7 +33,7 @@
 						echo "<td>".$l["address"]."</td>";
 						echo "<td>".$l["postal_code"]."</td>";
 						echo '<td><a href="Edit_Learner.php?id='.$l["id"].'" class="btn btn-success">Edit</a></td>';
-						echo '<td><a href="Delete_Learner.php?id='.$l["id"].'" class="btn btn-success">Delete</td>';
+						echo '<td><a href="Delete_Learner.php?id='.$l["id"].'" class="btn btn-success">Delete</a></td>';
 					echo "</tr>";
 					$i++;
 				}
