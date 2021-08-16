@@ -1,7 +1,5 @@
 <?php  
-
        include 'Tutor_header.php'; 
-
        include 'controllers/LearnerController.php';
        $id = $_GET["id"];
 	   $c = getLearner($id);
@@ -79,19 +77,20 @@
 					           </td>
 				           
                                <td>
+							       <img src="<?php echo $c["img"];?>" width='290px' height='220px'>
 							      
+			    		       </td>
+				            </tr>
+							<tr>
+                               <td></td>
+				           
+                               <td>
 							       <input type="file" name="image">
 			    		       </td>
 				            </tr>
 							 
 				   
 				             
-							
-							
-						
-							
-							 
-							 
 							 
                              <tr>
 						       <td align="center" colspan="2">

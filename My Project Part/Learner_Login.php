@@ -1,11 +1,10 @@
 <?php 
-
           include 'controllers/LearnerController.php';
 	 
 ?>
 <html>
 <head>
-	
+	<link rel="stylesheet" type="text/css" href="style/L_login.css">
 	<title>Learner Login</title>
 </head>
 <body>

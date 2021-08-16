@@ -2,7 +2,7 @@
      include 'models/db_config.php';   
 
 	 
-      $name="";      //variable
+     $name="";      //variable
      $err_name="";
 
      $email="";
@@ -28,7 +28,7 @@
 	 $num="";
      $err_num="";
 	 
-	 //$img="";
+	 $image="";
      $bld="";
      $err_bld="";
 	 
@@ -864,8 +864,72 @@ if(isset($_POST["sign_up"]))
 	 else if(isset($_POST["delete"]))
 	 {
 	
+		
+			  
+			  //Email  Validation
+
+                 
+            if(empty($_POST["email"])){
+                  
+                $err_email="Email Required ";
+                 $hasError = true;
+                 }
+                
+               else if(strpos($_POST["email"],"@"))
+               {
+                 if(strpos($_POST["email"],"."))
+                 {
+                  $email=$_POST["email"];
+                }
+                else{
+                     $err_email="Not accepted";
+                     $hasError = true;
+                }
+               }
+              
+                else if(strpos($_POST["email"],"."))
+               {
+                 if(strpos($_POST["email"],"."))
+                 {
+                   $err_email="use .(dot) after @";
+                   $hasError = true;
+                 }
+                 
+               }
+               
+               else{
+                   $err_email="Invalid email";  
+                   $hasError = true;
+                }
+				
+				
+		
+             
+
+
+		
+
+			if(!$hasError){
+		
+			$rs = deleteLearner($_POST["id"]);
+			if($rs === true){
+				header("Location: All_Learners.php");
+				
+			}
+			$err_db = "Database error";
+			}
+
+     }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	  else if(isset($_POST["L_update"])){
 		 
-		 //Name  Validation
+		//Name  Validation
 				
                  if(empty($_POST["name"])){
                $err_name="Name required";
@@ -941,68 +1005,18 @@ if(isset($_POST["sign_up"]))
                    $hasError = true;
                 }
 				
+				//Address
+			
+			if(empty($_POST["address"])){
+			$err_add="Address Required";
+			$hasError=true;
+		    }
+	    	else{
+			$add=$_POST["address"];
+		    }
+ 
 				
-		
-             
-
-            //*****************Number Validation*********************
-			
-			
-             if(empty($_POST["num"])){
-				$err_num="Phone Number Required";
-				$hasError = true;
-			}
-
-			    elseif(!is_numeric($_POST["num"]) && !empty($_POST["num"]))
-                {
-                $err_num=" Phone Number Required";
-				$hasError = true;
-                }
-
-				elseif(is_numeric($_POST["num"]))
-			{
-				$num=$_POST["num"]; 
-				
-            }    
-			
-			
-			
-			//Address
-			
-			if(!isset($_POST["Address"])){
-				$err_add="Address Required";
-				$hasError = true;
-			}
-			else{
-				$add=$_POST["Address"]; 
-				
-            } 
-			
-			
-			 //Blood Group
-			
-			if(!isset($_POST["Blood"])){
-				$err_bld="Blood Group Required";
-				$hasError = true;
-			}
-			else{
-				$bld=$_POST["Blood"]; 
-				
-            } 
-			
-				
-             //Gender Validation
-            
-            if(!isset($_POST["gender"])){
-                $err_gender="Gender Required";
-                $hasError = true;
-            }
-                else{
-                $gender=$_POST["gender"]; 
-                
-            }  
-			
-			 //Postal Code Validation
+				//Postal Code Validation
 
        if(empty($_POST["pcode"]))    
      	{
@@ -1019,39 +1033,23 @@ if(isset($_POST["sign_up"]))
 			 $err_pcode="Invalid";
 			$hasError = true;
 		 }
-
-			  
-			  //Password Validation
-			  
-			  
-     	
-        if(empty($_POST["password"]))   
-     	{
-			$err_cpass="Password Required";
-			$hasError = true;
-		}
-
-		elseif (strlen($_POST["password"])>=6 && !empty($_POST["password"]))  
-	    {
-			$cpass=$_POST["password"];
-		}
-
-		$fileType = strtolower(pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION));
+		 
+		 
+		 $fileType = strtolower(pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION));
 		$file = "storage/product_images/".uniqid().".$fileType";
 		move_uploaded_file($_FILES["image"]["tmp_name"],$file);
-        
 
 			if(!$hasError){
-		
-			$rs = deleteLearner($_POST["id"]);
+			$rs = updateLearners($name,$email,$add,$pcode,$file,$_POST["id"]);
 			if($rs === true){
-				header("Location: All_Learners.php");
+				header("Location:  L_Manage_Own_Profile.php");
 				
 			}
-			$err_db = "Database error";
+			$err_db = "Database Error";
 			}
-
-     }
+          
+					 
+	 }
 	 
 	 
 	 
@@ -1379,15 +1377,21 @@ elseif(isset($_POST["transfer"]))
 			$err_pass="Password must contain at least 8 characters";
 			$hasError = true;
 		}
+		
 		if(!$hasError){
-			
-			if($user = authenticateUser($email,$pass)){
-				
-					header("Location: L_Dashboard.php");
-				}
-					
-			$err_db = "Username password invalid";
-		}
+           
+            $rs = authenticateLearner($email);
+           
+               if($rs)
+               {
+                    session_start();
+                    $_SESSION["learner_profile"] = $rs;
+               setcookie("loggedLearner",$email,time()+150);
+                    header("Location: L_Dashboard.php");
+                }
+                   
+            $err_db = "Username password invalid";
+        }
 		
 		
 	}
@@ -1405,27 +1409,26 @@ elseif(isset($_POST["transfer"]))
 		return execute($query);	
 		}
 		
+		
+		
+		
 		function insertLearner($name,$email,$add,$pcode,$num,$gender,$bld,$file,$cpass){        //registration
 		$query  = "insert into learner_registration values (NULL,'$name','$email','$add',$pcode,$num,'$gender','$bld','$file','$cpass')";
 		//echo $query;
 		return execute($query);	
 		}
 		
-		function authenticateUser($email,$pass){                      //login
-		$query ="select * from learner_registration where email='$email' and password='$pass'";
-		$rs = get($query);
-		if(count($rs)>0){
-			return $rs[0];
-		}
-		return false;
 		
-	    }
-	
-	    function getAllLearner(){                   //show in all learner page
-		$query = "select * from learner_registration";
-		$rs = get($query);
-		return $rs;
-	    }
+		
+		
+		function authenticateLearner($email){      //login***********************
+       
+          $query= "select * from learner_registration where email='$email'";
+          return $rs= get($query);
+    
+        }
+		
+		
 		
 		
 		function getLearner($id){                   
@@ -1434,6 +1437,19 @@ elseif(isset($_POST["transfer"]))
 		return $rs[0];                   //To pass only one instance
 	    }
 		
+	
+	
+	
+	    function getAllLearner(){                   //show in all learner page
+		$query = "select * from learner_registration";
+		$rs = get($query);
+		return $rs;
+	    }
+		
+		
+		
+		
+		
 		function updateLearners($name,$email,$add,$pcode,$file,$id){       //edit learner
 		$query = "update learner_registration set name= '$name',email='$email',address='$add',postal_code='$pcode',img='$file' where id = $id";
 	    return execute($query);
@@ -1441,11 +1457,16 @@ elseif(isset($_POST["transfer"]))
 	 
 		
 		
+		
+		
 		 function deleteLearner($id)         //learner    delete
         {
           $query= "delete from learner_registration where id= $id";
           return execute($query);
+		 
         }
+		
+		
 		
 		
 		function transferamount($Ttype,$tn,$date,$Pby,$Rby,$balance)    //transaction
@@ -1455,6 +1476,8 @@ elseif(isset($_POST["transfer"]))
 			
 		}
 			
+			
+			
 		function getTransaction(){                   //show payment information
 		$query ="select * from payment";
 		$rs = get($query);
@@ -1462,10 +1485,21 @@ elseif(isset($_POST["transfer"]))
 	    }
 		
 		
+		
+		
 		function insertTrating($name,$budget,$behavior,$Satisfied,$Star,$purpose,$feedback){
 		$query  = "insert into tutor_rating values (NULL,'$name','$budget','$behavior','$Satisfied','$Star','$purpose','$feedback')";
 		//echo $query;
 		return execute($query);	
+		}
+		
+		
+		
+		function search($key)               //Search--------------
+		{
+			$query ="select id,name,email,gender,address,img from learner_registration where name like '%$key%'";
+			$rs = get($query);
+		    return $rs;
 		}
 		
 		

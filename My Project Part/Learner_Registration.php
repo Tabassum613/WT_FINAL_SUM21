@@ -3,7 +3,7 @@
 ?>
 <html>
   <head>
-	<title>Registration</title>
+	<link rel="stylesheet" type="text/css" href="style/L_Registration.css">
   </head>
   <body>
                  <form action="" method="post" enctype="multipart/form-data">
@@ -11,7 +11,7 @@
                              <tr>
                              	 <td  align="center" colspan="2">
 								   <b>
-								     <h2>Learner Registration</h2>
+								     <h1><b>Learner Registration Form</b></h1>
 								   </b>
 								 </td>
                              </tr>

@@ -3,27 +3,42 @@
 ?>
 <html>
   <head>
-	<title>Tutor SignUp</title>
+          <link rel="stylesheet" type="text/css" href="style/T_signup.css">
+		 <script>
+	         var hasError=false;
+			function get(id){
+				return document.getElementById(id);
+			}
+	      function validate(){
+	        if(get("name").value == "") {
+			hasError =true;
+			get("err_name").innerHTML = "**Name Required";
+			}
+			
+			
+	      }
+		  function refresh(){
+		   hasError = false ;
+		   get("err_name").innerHTML="";
+		   get("err_email").innerHTML = "";
+		   //get("err_add").innerHTML = "";
+		   get("err_gender").innerHTML = "";
+		   
+	   }
+	
+	
+	</script>
+
   </head>
   <body>
-                 <form action="" method="post">
+                 <form action="" onsubmit= "return validate()" method="post">
                 	  <table align="center">
-                             <tr>
-                             	 <td  align="center" colspan="2">
-								   <b>
-								     <h2>Sign up</h2>
-								   </b>
-								 </td>
-                             </tr>
+                                   <tr><td  align="center" colspan="2">
+								   <b><h1>Sign up</h1></b>
+								  </td></tr>
 							 
-							 
-							 <tr>
-                              <td>
-                              	<span>
-                              		<?php echo $err_db;?>	
-                              	</span>
-                              </td>
-                            </tr>
+							
+							 <tr><td><span><?php echo $err_db;?></span> </td> </tr>
 							 
 							 
 							 
@@ -32,7 +47,7 @@
                                    <b> Name  </b> 
                               </td>
 							  <td>
-                                  <input type="text" placeholder="Name" name="name" value="<?php echo $name; ?>" size="40">
+                                  <input type="text" placeholder="Name" id="name" name="name" value="<?php echo $name; ?>" size="40">
                               </td>
 							  </tr>
 							 
@@ -40,19 +55,17 @@
 							 <td>
 							 </td>
                               <td>
-                              	<span>
-                              		<?php echo $err_name;?>	
-                              	</span>
+                              	<span id="err_name"><?php echo $err_name;?></span>
                               </td>
                             </tr>
 							 
-							 </tr>
+							 
                 	  	     <tr>
                 	  	     	 <td>
 								    <b>Email</b>
 								</td>
-                	  	     	 <td>
-                                    <input type="text" placeholder="Email" name="email" value="<?php echo $email; ?>" size="40">
+							    <td>
+                                    <input type="text" onfocusout="checkEmail(this)" placeholder="Email" name="email" value="<?php echo $email; ?>" size="40">
                                  </td>
 								 </tr>
 							 
@@ -60,7 +73,7 @@
 								 <td>
 								 </td>
                                  <td>
-                                    <span>
+                                    <span id="err_email">
                                         <?php echo $err_email;?>    
                                     </span>
                                  </td> 
@@ -73,8 +86,8 @@
 							 </td>
 							 <td>
 							 
-                                  <input type="radio" name="gender" value="Male" <?php if($gender == "Male") echo "checked"?> > Male 
-                                  <input type="radio" name="gender" value="Female" <?php if($gender == "Female") echo "checked"?> > Female
+                                  <input type="radio" name="gender" id="Male" value="Male" <?php if($gender == "Male") echo "checked"?> > Male 
+                                  <input type="radio" name="gender" id="Female" value="Female" <?php if($gender == "Female") echo "checked"?> > Female
                             </td>
 							 </tr>
 							 
@@ -82,7 +95,7 @@
 							 <td>
 							 </td>
                              <td>
-                                <span><?php echo $err_gender;?></span>
+                                <span id="err_gender"><?php echo $err_gender;?></span>
                             </td>
                               </tr>
 							  
@@ -92,7 +105,7 @@
 							<b>Address</b>
 							</td>
 							<td>
-      	    	   	   	       <select name="Address">
+      	    	   	   	       <select id="address" name="Address">
       	    	   	   	   	       <option selected disabled>Address</option>
 								  <?php
 								  foreach($Address as $a)
@@ -108,14 +121,11 @@
 								  </tr>
 							 
                                  <tr>
-                                 <td>
-							     </td>								 
-      	    	   	              <td>
-                              	<span>
-                              	   <?php echo $err_add;?>
-                              	</span>
-                            </td>  
-                            </tr>
+                                 <td></td>
+								 <td>
+                              	<span ="err_add"><?php echo $err_add;?></span>
+                                </td>  
+                                </tr>
 							
 							
 
@@ -131,9 +141,9 @@
                              <tr>
 							 <td>
 							 </td>
-      	    	   	            <td>
+      	    	   	            <td><span>
       	    	   	   	             <?php echo $err_pass;?>
-      	    	   	            </td>
+      	    	   	            </span></td>
       	    	            </tr>
 							 
 							 <tr>
@@ -149,12 +159,13 @@
                              <tr>
 							 <td>
 							 </td>
-      	    	   	         <td>
+      	    	   	         <td><span>
       	    	   	   	             <?php echo $err_cpass;?>
-      	    	   	         </td>
+      	    	   	         </span></td>
                              </tr>
 							 
 							 
+							
 							
 							 <tr>
 							   <td  colspan="2">

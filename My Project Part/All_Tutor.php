@@ -1,4 +1,4 @@
-       <?php  
+         <?php  
 		  include 'Tutor_header.php'; 
           include 'controllers/TutorController.php';
 		  $tutor = getAllTutor();
@@ -45,3 +45,4 @@
 
 		
 		<?php include 'Tutor_footer.php';?>
+		

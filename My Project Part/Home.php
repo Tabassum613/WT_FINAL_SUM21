@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Photo Artistry</title>
-</head>
+<?php 
+          include 'Tutor_header.php';
+
+         
+?>
+
 <body background="4.jpg">
 	<img src="logo2.png" height="150" width="160" align="left">
 	<br><br>
@@ -16,6 +17,4 @@
       </font>
       
       </h1>
-
-</body>
-</html>
+<?php include 'Tutor_footer.php';?>

@@ -4,23 +4,28 @@
 ?>
 <html>
   <head>
-	<title>Registration</title>
+        <link rel="stylesheet" type="text/css" href="style/T_Registration.css">
+		
+		
+	  
+	
   </head>
   <body>
-                 <form action="All_Tutor.php" method="post" enctype="multipart/form-data">
-                	  <table align="center" >
-					  
-					  
-					  
+  
+              
                              <tr>
-                             	 <td  align="center" colspan="2">
-								   <b>
-								     <h2>Tutor Registration</h2>
-								   </b>
+                             	 <td  align="center" colspan="2" onsubmit= "return validate">
+								     <h1><b>Tutor Registration Form</b></h1>
 								 </td>
                              </tr>
-							 
-							 
+					 
+					  
+			
+              <form action="" method="post" enctype="multipart/form-data">
+			
+                	  <table>
+					  
+					  <div class="main"> 
 							 <tr>
                               <td>
                               	<span>
@@ -29,48 +34,27 @@
                               </td>
                             </tr>
 							 
+							
+						<div class="class">
+                	  	     <tr><td><b> Name  </b> </td>
+							 <td><input type="text" placeholder="Name" name="name" value="<?php echo $name; ?>" size="40"></td></tr>
+						
 							 
+                             <tr><td></td> <td>
+                              	<span><?php echo $err_name;?></span>
+                              </td></tr>
 							 
-                	  	     <tr>
-                              <td>
-                                   <b> Name  </b> 
-                              </td>
-							  <td>
-                                  <input type="text" placeholder="Name" name="name" value="<?php echo $name; ?>" size="40">
-                              </td>
-							  </tr>
+							  </div>
+							
+							 </tr><tr><td><b>Email</b></td><td>
+                              <input type="text" placeholder="Email" name="email" value="<?php echo $email; ?>" size="40">
+                               </td></tr>
 							 
-                             <tr>
-							 <td>
-							 </td>
-                              <td>
-                              	<span>
-                              		<?php echo $err_name;?>	
-                              	</span>
-                              </td>
-                            </tr>
-							 
-							 </tr>
-                	  	     <tr>
-                	  	     	 <td>
-								    <b>Email</b>
-								</td>
-                	  	     	 <td>
-                                    <input type="text" placeholder="Email" name="email" value="<?php echo $email; ?>" size="40">
-                                 </td>
-								 </tr>
-							 
-                                 <tr>
-								 <td>
-								 </td>
-                                 <td>
-                                    <span>
-                                        <?php echo $err_email;?>    
-                                    </span>
-                                 </td> 
-      	    	            </tr>
-                	  	     
-							 
+                                 <tr><td></td><td>
+                                    <span><?php echo $err_email;?></span>
+                                 </td> </tr>
+                	  	    
+							
 							 <tr>
                             <td>
 							<b>Address</b>
@@ -100,8 +84,10 @@
                               	</span>
                             </td>  
                             </tr>
+					
 							
-				        <tr>
+							
+				            <tr>
       	    	   	          <td>
       	    	   	   	           <b>National ID Number</b>
       	    	   	          </td>
@@ -118,8 +104,9 @@
                               	</span>
                               </td> 
       	    	        </tr>
+						
 				   
-				   
+				        
 				        <tr>
       	    	   	          <td>
       	    	   	   	           <b>Phone Number</b>
@@ -137,7 +124,7 @@
                               	</span>
                               </td> 
       	    	        </tr>
-				   
+				        
 				   
 				   
 							  <tr>
@@ -209,12 +196,13 @@
                                <td>
 					               <b>Category</b>  
 					           </td>
-					        <td>
-      	    	   	   	         <textarea  cols="38" rows="3" name="category"  ><?php echo $category; ?></textarea>
+					           <td>
+      	    	   	   	         <textarea  cols="38" rows="3" name="category"  size="40"><?php echo $category; ?></textarea>
       	    	   	           </td>
 							   </tr>
-							   <tr>
+							    <tr>
 							   <td></td>
+							   <td>
                               	<span>
                               		<?php echo $err_category;?>
                               	</span>
@@ -263,9 +251,10 @@
 							     <input type="submit" name="register" value="Register">
 							   </td><br>
 					        </tr>
-							 
+							
 							
                 	  </table>
-                </form>   	
+                </form>  
+</div>				
    </body>
 </html>
