@@ -4,9 +4,42 @@
 <html>
   <head>
 	<link rel="stylesheet" type="text/css" href="style/L_Registration.css">
+	<style>
+input{
+padding: 4px 5px;
+border-radius: 5px;
+margin: 5px;
+border: 2px solid red;
+}
+
+ 
+
+</style>
+	
+	 <script type="text/javascript">
+
+    	     var hasError = false;
+             function get(id)
+             {
+             	return document.getElementById(id);
+             }
+			 
+			 
+			 
+			 
+			 
+			 
+	
   </head>
   <body>
-                 <form action="" method="post" enctype="multipart/form-data">
+                 <form action="" method="post" enctype="multipart/form-data" style="
+background: rgb(0,0,0,0.5);
+width: 40%;
+margin: 150px auto;
+padding: 20px 0;
+border-radius: 15px;
+box-shadow: 5px 5px 8px gray;
+">
                 	  <table align="center">
                              <tr>
                              	 <td  align="center" colspan="2">
@@ -16,7 +49,10 @@
 								 </td>
                              </tr>
 							 
-							 
+							 <tr><td></td><td>
+							  <tr><td></td><td>
+							   <tr><td></td><td>
+							   
 							 <tr>
                               <td>
                               	<span>

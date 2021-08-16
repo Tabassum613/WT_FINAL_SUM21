@@ -6,11 +6,29 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="style/L_login.css">
 	<title>Learner Login</title>
+	<style>
+input{
+padding: 8px 10px;
+border-radius: 5px;
+margin: 5px;
+border: 2px solid red;
+}
+
+ 
+
+</style>
 </head>
 <body>
       
 
-      <form method="Post" action="" enctype='multipart/form-data'>
+      <form method="Post" action="" enctype='multipart/form-data' style="
+background: rgb(0,0,0,0.5);
+width: 40%;
+margin: 150px auto;
+padding: 20px 0;
+border-radius: 15px;
+box-shadow: 5px 5px 8px gray;
+">
       	    <table align="center">
                              <tr>
                              	 <td  align="center" colspan="2">

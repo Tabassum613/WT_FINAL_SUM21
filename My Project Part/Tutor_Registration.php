@@ -5,23 +5,82 @@
 <html>
   <head>
         <link rel="stylesheet" type="text/css" href="style/T_Registration.css">
-		
-		
+		   
+		   <style>
+input{
+padding: 8px 10px;
+border-radius: 5px;
+margin: 5px;
+border: 2px solid red;
+}
+
+ 
+
+</style>
+		      <script type="text/javascript">
+			  
+			  
+	        var hasError = false;
+             function get(id)
+             {
+             	return document.getElementById(id);
+             }
+			 function validate()
+    	     {
+				refresh(); 
+			   if(get("name").value == "")    //name validation
+    	     	{
+    	     		hasError = true;
+    	     		get("err_name").innerHTML="**Name Required";
+    	     	}
+
+                 else if(get("name").value.indexOf(' ') && get("name").value.length >=8)
+                {
+                    hasError = true;
+                    get("err_name").innerHTML="**Space Required";
+                }
+
+
+
+           
+               }    
+           
+
+						 
+			 function refresh()
+    	     {
+    	     	hasError = false;
+                get("err_name").innerHTML="";
+			 }
+			 
 	  
+	
+	
+	
+	</script>
+
+		
 	
   </head>
   <body>
   
               
                              <tr>
-                             	 <td  align="center" colspan="2" onsubmit= "return validate">
+                             	 <td  align="center" colspan="2">
 								     <h1><b>Tutor Registration Form</b></h1>
 								 </td>
                              </tr>
 					 
 					  
 			
-              <form action="" method="post" enctype="multipart/form-data">
+              <form action="" method="post" enctype="multipart/form-data"  onsubmit="return validate()"style="
+background: rgb(0,0,0,0.5);
+width: 50%;
+margin: 150px auto;
+padding: 20px 0;
+border-radius: 15px;
+box-shadow: 5px 5px 8px gray;
+">
 			
                 	  <table>
 					  
@@ -37,11 +96,11 @@
 							
 						<div class="class">
                 	  	     <tr><td><b> Name  </b> </td>
-							 <td><input type="text" placeholder="Name" name="name" value="<?php echo $name; ?>" size="40"></td></tr>
+							 <td><input type="text" placeholder="Name" id="name" name="name" value="<?php echo $name; ?>" size="40"></td></tr>
 						
 							 
                              <tr><td></td> <td>
-                              	<span><?php echo $err_name;?></span>
+                              	<span id="err_name"><?php echo $err_name;?></span>
                               </td></tr>
 							 
 							  </div>

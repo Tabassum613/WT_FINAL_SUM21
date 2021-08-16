@@ -8,7 +8,7 @@
 
 
 <div class="center">
-	<h3 class="text">All ll</h3>
+	<h3 class="text">Learners List</h3>
 	<table class="table table-striped">
 		<thead>
 			<th>Sl#</th>

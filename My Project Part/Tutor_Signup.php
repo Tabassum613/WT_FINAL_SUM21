@@ -1,40 +1,72 @@
+<script src="JS/tutor_signup.js"></script>
 <?php
           include 'controllers/TutorController.php';
 ?>
 <html>
   <head>
           <link rel="stylesheet" type="text/css" href="style/T_signup.css">
-		 <script>
-	         var hasError=false;
+		  	<style>
+input{
+padding: 4px 5px;
+border-radius: 5px;
+margin: 4px;
+border: 2px solid red;
+}
+
+
+</style>
+		  <script>
+	        var hasError=false;
 			function get(id){
 				return document.getElementById(id);
 			}
-	      function validate(){
-	        if(get("name").value == "") {
+	function validate(){
+		refresh();
+		if(get("name").value == "") {
 			hasError =true;
-			get("err_name").innerHTML = "**Name Required";
-			}
-			
-			
-	      }
-		  function refresh(){
+			get("err_name").innerHTML = "*Name Required";
+		}
+		if(get("email").value == "") {
+			hasError =true;
+			get("err_email").innerHTML = "*Email Required";
+		}
+		/*if(get("address").selectedIndex == 0) {
+			hasError =true;
+			get("err_add").innerHTML = "*Address Required";
+		}*/
+		if(!get("Male").checked && !get("Female").checked) {
+			hasError =true;
+			get("err_gender").innerHTML = "*Gender Required";
+		}
+		return !hasError;
+	   }
+	   function refresh(){
 		   hasError = false ;
 		   get("err_name").innerHTML="";
 		   get("err_email").innerHTML = "";
 		   //get("err_add").innerHTML = "";
 		   get("err_gender").innerHTML = "";
-		   
+
 	   }
+		
+
 	
 	
 	</script>
 
   </head>
   <body>
-                 <form action="" onsubmit= "return validate()" method="post">
-                	  <table align="center">
-                                   <tr><td  align="center" colspan="2">
-								   <b><h1>Sign up</h1></b>
+                 <form action="" onsubmit= "return validate()" method="post" style="
+background: rgb(0,0,0,0.5);
+width: 40%;
+margin: 30px auto;
+padding: 20px 0;
+border-radius: 15px;
+box-shadow: 5px 5px 8px gray;
+">
+                	  <table align="center" name="table">
+                                   <tr><td colspan="2" align="center">
+								   <h1><b>Sign up</b></h1>
 								  </td></tr>
 							 
 							

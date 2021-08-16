@@ -7,16 +7,34 @@
 <head>
 	 <link rel="stylesheet" type="text/css" href="style/T_login.css">
 	<title>Tutor Login</title>
+	<style>
+input{
+padding: 8px 10px;
+border-radius: 5px;
+margin: 5px;
+border: 2px solid red;
+}
+
+ 
+
+</style>
 </head>
 <body>
       
 
-      <form method="Post" action="">
+      <form method="Post" action="" style="
+background: rgb(0,0,0,0.5);
+width: 40%;
+margin: 150px auto;
+padding: 20px 0;
+border-radius: 15px;
+box-shadow: 5px 5px 8px gray;
+">
       	    <table align="center">
                              <tr>
                              	 <td  align="center" colspan="2">
 								   <b>
-								     <h2>Sign in</h2>
+								     <h1>Sign in</h1>
 								   </b>
 								 </td>
                              </tr>

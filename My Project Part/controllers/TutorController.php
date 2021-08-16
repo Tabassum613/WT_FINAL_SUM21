@@ -228,7 +228,7 @@
 			if($rs === true){
 				header("Location: Tutor_Registration.php");
 			}
-			$err_db = "dddddddddddddddddd";
+			$err_db = "Database Error";
 			
 		    }
 
@@ -239,111 +239,7 @@
 	  
 	  else if(isset($_POST["T_update"])){
 		 
-		//Name  Validation
-				
-                 if(empty($_POST["name"])){
-               $err_name="Name required";
-               $hasError = true;
-               }
-               elseif(!is_numeric($_POST["name"]) && !empty($_POST["name"]))
-               {
-               	if(strpos($_POST["name"]," ") && strlen($_POST["name"]) >= 6)
-               	{
-                $name=$_POST["name"];
-                }
-
-                elseif(!strpos($_POST["name"]," ") && strlen($_POST["name"]) >= 6)
-               	{
-                $err_name="Space required";
-			        $hasError = true;
-                }
-
-                elseif(strpos($_POST["name"]," ") && strlen($_POST["name"]) < 6)
-               	{
-                $err_name="Name must contain at least 6 characters";
-			        $hasError = true;
-                }
-                
-                elseif(!strpos($_POST["name"]," ") && strlen($_POST["name"]) < 6)
-                {
-                	$err_name="Name must contain at least 6 characters with space";
-			        $hasError = true;
-                }
-               
-			   }
-			   
-				elseif(is_numeric($_POST["name"]))
-				{
-                    $err_name="Number is not allowed";
-			        $hasError = true; 
-				}
-		      
-			  
-			  //Email  Validation
-
-                 
-            if(empty($_POST["email"])){
-                  
-                $err_email="Email Required ";
-                 $hasError = true;
-                 }
-                
-               else if(strpos($_POST["email"],"@"))
-               {
-                 if(strpos($_POST["email"],"."))
-                 {
-                  $email=$_POST["email"];
-                }
-                else{
-                     $err_email="Not accepted";
-                     $hasError = true;
-                }
-               }
-              
-                else if(strpos($_POST["email"],"."))
-               {
-                 if(strpos($_POST["email"],"."))
-                 {
-                   $err_email="use .(dot) after @";
-                   $hasError = true;
-                 }
-                 
-               }
-               
-               else{
-                   $err_email="Invalid email";  
-                   $hasError = true;
-                }
-				
-				//Address
-			
-			if(empty($_POST["address"])){
-			$err_add="Address Required";
-			$hasError=true;
-		    }
-	    	else{
-			$add=$_POST["address"];
-		    }
- 
-				
-				//Postal Code Validation
-
-       if(empty($_POST["pcode"]))    
-     	{
-			$err_pcode="Postal code required";
-			$hasError = true;
-		}
-
-       elseif(is_numeric($_POST["pcode"]) && !empty($_POST["pcode"]))
-		{
-			$pcode=$_POST["pcode"];
-		}
-         elseif(!is_numeric($_POST["pcode"]))
-		 {
-			 $err_pcode="Invalid";
-			$hasError = true;
-		 }
-		 
+		
 		 
 		 $fileType = strtolower(pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION));
 		$file = "storage/product_images/".uniqid().".$fileType";
@@ -601,12 +497,12 @@
 
 			}
 			
-			$err_db = "Data";
+			$err_db = "Database Error";
 			}
 
      }
 	 
-	 //****************************************Update Profile***************************************
+	
 	 
 	
 	 
@@ -702,7 +598,7 @@
                     header("Location: T_Dashboard.php");
                 }
                    
-            $err_db = "Username password invalid";
+            $err_db = "Email password invalid";
         }
            
     }       
@@ -759,7 +655,7 @@
 	 
 		
 		
-		function checkEmail($email){                      //Check*******
+		function checkTutorEmail($email){                      //Check*******
 		$query ="select name from tutor_signup where email='$email'";
 		$rs = get($query);
 		if(count($rs)>0){
@@ -775,6 +671,12 @@
 			$rs = get($query);
 		    return $rs;
 		}
+		
+		
+		
+		
+		
+		
 		
 ?>
 

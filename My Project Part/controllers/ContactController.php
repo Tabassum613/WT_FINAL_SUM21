@@ -70,7 +70,7 @@
 			if($rs === true){
 				header("Location: text.php");
 			}
-			$err_db = "database error";
+			$err_db = "Database Error";
 			
 		    }
 		
@@ -141,7 +141,7 @@
 			if($rs === true){
 				header("Location: text.php");
 			}
-			$err_db = "database error";
+			$err_db = "Database Error";
 			
 		    }
 		

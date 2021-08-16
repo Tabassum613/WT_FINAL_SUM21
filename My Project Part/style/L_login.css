@@ -2,19 +2,19 @@
 	
 	*{
 		margin:0;
-	    padding:0;
+	    padding:3;
+		
+        font-family: ageo;
+        font-size: 16px;
+		color:#000000;
 	}
 	
 	body{
 		background-image:url(img4.png);
-		background-position:justify;
+		background-position:center;
 		background-repeat: no-repeat;
 		background-size: 1600px 800px;
-		color:#FFFFFF;
-		text-align:center;
-        font-family: ageo;
-        font-size: 16px;
-
+		
 	}
 	
 	

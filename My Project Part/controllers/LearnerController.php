@@ -281,7 +281,7 @@ if(isset($_POST["sign_up"]))
 			if($rs === true){
 				header("Location: Learner_Registration.php");
 			}
-			$err_db = "dddddddddddddddddd";
+			$err_db = "Database Error";
 			
 		    }
 
@@ -496,7 +496,7 @@ if(isset($_POST["sign_up"]))
 				header("Location: L_Dashboard.php");
 				
 			}
-			$err_db = "dqqqqqqqqqqqqqqqqqqqqqqq";
+			$err_db = "Database Error";
 			}
 
      }
@@ -722,7 +722,7 @@ if(isset($_POST["sign_up"]))
 				header("Location: Add_Learner.php");
 				
 			}
-			$err_db = "dqqqqqqqqqqq";
+			$err_db = "Database Error";
 			}
           
 			
@@ -1390,7 +1390,7 @@ elseif(isset($_POST["transfer"]))
                     header("Location: L_Dashboard.php");
                 }
                    
-            $err_db = "Username password invalid";
+            $err_db = "Email password invalid";
         }
 		
 		

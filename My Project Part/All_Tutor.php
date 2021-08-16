@@ -6,7 +6,7 @@
         ?>
      
 <div class="center">
-	<h3 class="text">View All</h3>
+	<h3 class="text">Tutors List</h3>
 	<table class="table table-striped">
 		<thead>
 			<th>Sl#</th>
