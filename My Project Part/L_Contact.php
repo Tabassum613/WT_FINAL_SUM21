@@ -9,12 +9,29 @@
 
 	<div class="center">
 	<table class="table table-striped">
-	   <h1>ChatBook</h1>
+	   <h1>ChatBox</h1>
 	   </br>
+	   
 		<tbody>
+		<tr></tr>
+					    <tr></tr>
+						<tr></tr>
+					    <tr></tr>
+						<tr></tr>
+					    <tr></tr>
+						<tr></tr>
+					    <tr></tr>
+						<tr></tr>
+					    <tr></tr>
+						<tr></tr>
+					    <tr></tr>
 			<?php
 				foreach($tutor as $t){
-					echo "<tr>";
+					    echo "<tr></tr>";
+						echo "<tr></tr>";
+						echo "<tr></tr>";
+						echo "<tr></tr>";
+					    echo "<tr>";
 						echo "<td><img src='".$t["img"]."' width='60px' height='60px'></td>";
 						echo "<td>".$t["name"]."</td>";
 						echo '<td><a href="T_ContactForm.php?id='.$t["id"].'" class="btn btn-success">Message</a></td>';

@@ -16,47 +16,52 @@ border: 2px solid red;
 
 </style>
 		  <script>
-	        var hasError=false;
-			function get(id){
-				return document.getElementById(id);
-			}
-	function validate(){
-		refresh();
-		if(get("name").value == "") {
-			hasError =true;
-			get("err_name").innerHTML = "*Name Required";
-		}
-		if(get("email").value == "") {
-			hasError =true;
-			get("err_email").innerHTML = "*Email Required";
-		}
-		/*if(get("address").selectedIndex == 0) {
-			hasError =true;
-			get("err_add").innerHTML = "*Address Required";
-		}*/
-		if(!get("Male").checked && !get("Female").checked) {
-			hasError =true;
-			get("err_gender").innerHTML = "*Gender Required";
-		}
-		return !hasError;
-	   }
-	   function refresh(){
-		   hasError = false ;
-		   get("err_name").innerHTML="";
-		   get("err_email").innerHTML = "";
-		   //get("err_add").innerHTML = "";
-		   get("err_gender").innerHTML = "";
+ var hasError=false;
+ function get(id){
+	
+ return document.getElementById(id);
+ }
+ 
+ function validate(){
+ 
+ refresh();
+ if(get("name").value == ""){
+ hasError = true;
+ get("err_name").innerHTML = "*Name Req*";
+ }
+ 
+ else if(get("name").value.length <= 3){
+ hasError = true;
+ get("err_name").innerHTML = "*Name must be >= 3 characters";
+ get("err_name").innerHTML = "*Space req";
+ get("err_name").innerHTML = "*Name must contain at least 3 characters with space";
+ }
+ 
+   if(get("email").value == "")
+                 {
+                     hasError = true;
+                     get("err_email").innerHTML= "**Email Required";
+                 }
 
-	   }
-		
-
+                if(get("email").value.indexOf('@') > get("email").value.indexOf('.'))
+                {
+                    hasError = true;
+                    get("err_email").innerHTML="**Invalid ('@') & ('.') Position";
+                }
+	 
+	 
+	 
+ return !hasError;
+ 
+ }
+ 
 	
 	
 	</script>
 
   </head>
   <body>
-                 <form action="" onsubmit= "return validate()" method="post" style="
+                 <form method="post" onsubmit= "return validate()" action=""  style="
 background: rgb(0,0,0,0.5);
 width: 40%;
 margin: 30px auto;
@@ -64,7 +69,7 @@ padding: 20px 0;
 border-radius: 15px;
 box-shadow: 5px 5px 8px gray;
 ">
-                	  <table align="center" name="table">
+                	  <table align="center">
                                    <tr><td colspan="2" align="center">
 								   <h1><b>Sign up</b></h1>
 								  </td></tr>

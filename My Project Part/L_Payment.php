@@ -3,10 +3,10 @@
           include 'controllers/LearnerController.php';
 	   
  ?>
- 
+
  
   
-              <form action="" method="post"  enctype="multipart/form-data">
+              <form action="" method="post" onsubmit= "return validate()"  enctype="multipart/form-data">
                 	  <table align="center">
                              <tr>
                              	 <td  align="center" colspan="2">
@@ -25,6 +25,7 @@
                               </td>
                             </tr>
 							 
+							
 							
                 	  	      <tr>
                 	  	     	 <td><b> Type of  Transaction </b></td>

@@ -591,7 +591,7 @@
                {
                     session_start();
                     $_SESSION["tutor_profile"] = $rs;
-               setcookie("loggedTutor",$email,time()+10);
+               setcookie("loggedTutor",$email,time()+5);
                
                
                

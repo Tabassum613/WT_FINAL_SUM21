@@ -18,11 +18,134 @@ border: 2px solid red;
 	
 	 <script type="text/javascript">
 
-    	     var hasError = false;
-             function get(id)
-             {
-             	return document.getElementById(id);
-             }
+    	   <script>
+ var hasError=false;
+ function get(id){
+ return document.getElementById(id);
+ }
+ 
+ function validate(){
+ 
+ refresh();
+ if(get("name").value == ""){
+ hasError = true;
+ get("err_name").innerHTML = "*Name Req*";
+ }
+ 
+ else if(get("name").value.length <= 3){
+ hasError = true;
+ get("err_name").innerHTML = "*Name must be >= 3 characters";
+ get("err_name").innerHTML = "*Space req";
+ get("err_name").innerHTML = "*Name must contain at least 3 characters with space";
+ }
+ 
+
+ 
+
+   if(get("email").value == "")
+                 {
+                     hasError = true;
+                     get("err_email").innerHTML= "**Email Required";
+                 }
+
+                if(get("email").value.indexOf('@') > get("email").value.indexOf('.'))
+                {
+                    hasError = true;
+                    get("err_email").innerHTML="**Invalid ('@') & ('.') Position";
+                }
+				
+				if(get("add").selectedIndex==0){
+                    hasError = true;
+                    get("err_add").innerHTML = "**Address required";
+                }
+                
+                
+                if(isNaN(get("num").value))
+                {
+                    hasError = true;
+                    get("err_num").innerHTML="**Phone Number Should be Integer Value";
+                }
+                
+                
+             
+            
+             if(get("nid").value == "")
+                {
+                    hasError = true;
+                    get("err_nid").innerHTML="**NID Number Required";
+                }
+
+ 
+
+                if(isNaN(get("nid").value))
+                {
+                    hasError = true;
+                    get("err_nid").innerHTML="**NID Number Should be Integer Value";
+                }
+				
+				
+                
+                if(get("num").value == "")
+                {
+                    hasError = true;
+                    get("err_num").innerHTML="**Number Required";
+                }
+
+ 
+
+                if(isNaN(get("num").value))
+                {
+                    hasError = true;
+                    get("err_num").innerHTML="** Number Should be Integer Value";
+                }
+          
+		  
+		  
+		  
+		  
+		  
+		  if(get("category").value == ""){
+                    hasError = true;
+                    get("err_category").innerHTML = "**Category requiredReq";
+                }
+		  
+				
+	  if(get("pass").value == "")
+                {
+                    hasError = true;
+                    get("err_pass").innerHTML="**Password Required";
+                }
+                if(get("cpass").value == "")
+                {
+                    hasError = true;
+                    get("err_cpass").innerHTML="**Confirm Password Required";
+                }
+
+ 
+
+                if(get("pass").value != get("cpass").value)
+                {
+                    hasError = true;
+                    get("err_cpass").innerHTML="**Password does not Matched";
+                }
+				
+				
+				
+            
+                    if(get("bld").selectedIndex==0){
+                    hasError = true;
+                    get("err_bld").innerHTML = "**Blood Group required";
+                }
+
+ 
+ return !hasError;
+ }
+ function refresh(){
+ hasError=false;
+ get("err_name").innerHTML="";
+ }
+	
+	</script>
 			 
 			 
 			 

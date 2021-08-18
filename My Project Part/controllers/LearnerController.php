@@ -1302,7 +1302,7 @@ elseif(isset($_POST["transfer"]))
 		  if(!$hasError){
 			$rs = transferamount($Ttype,$tn,$date,$Pby,$Rby,$balance);
 			if($rs === true){
-				header("Location: Transactions.php");
+				header("Location: L_Payment.php");
 				
 			}
 			$err_db = "Database error";
@@ -1386,7 +1386,7 @@ elseif(isset($_POST["transfer"]))
                {
                     session_start();
                     $_SESSION["learner_profile"] = $rs;
-               setcookie("loggedLearner",$email,time()+150);
+               setcookie("loggedLearner",$email,time()+30);
                     header("Location: L_Dashboard.php");
                 }
                    

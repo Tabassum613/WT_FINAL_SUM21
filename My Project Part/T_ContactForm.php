@@ -10,7 +10,7 @@
                     <form action="" method="post">
                     <table align="center">
                              <tr>
-                              <td><b>Name jjjjjj </b></td>
+                              <td><b></b></td>
 							</tr>
                               	
 							<tr>
